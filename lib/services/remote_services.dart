@@ -1,17 +1,20 @@
-import 'package:flutter_finals/models/teams.dart';
+import 'package:flutter_finals/models/types.dart';
 import 'package:http/http.dart' as http;
 
 class RemoteServices {
+  final int id;
   static var client = http.Client();
 
-  static Future<Teams?> fetchTeams() async {
-    var teamResponse =
-        await client.get(Uri.parse('https://www.balldontlie.io/api/v1/teams'));
-    if (teamResponse.statusCode == 200) {
-      var jsonString = teamResponse.body;
-      return teamsFromJson(jsonString);
+  RemoteServices(this.id);
+
+  Future<Types?> fetchtypes() async {
+    var typesResponse =
+        await client.get(Uri.parse('https://pokeapi.co/api/v2/type/${id}'));
+    if (typesResponse.statusCode == 200) {
+      var jsonString = typesResponse.body;
+      return typesFromJson(jsonString);
     } else {
-      return null;
+      print(typesResponse.statusCode);
     }
   }
 }
