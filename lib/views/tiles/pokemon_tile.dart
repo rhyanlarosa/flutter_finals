@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_finals/models/types.dart';
+import 'package:flutter_finals/models/pokemon.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class PokemonTile extends StatelessWidget {
-  final Pokemon pokemon;
+  final PokemonMaster pokemon;
   const PokemonTile(this.pokemon);
 
   @override
@@ -23,12 +24,17 @@ class PokemonTile extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                   ),
+                  child: CachedNetworkImage(
+                    imageUrl: pokemon.sprites.frontDefault.toString(),
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
                 ),
               ],
             ),
             SizedBox(height: 8),
             Text(
-              pokemon.pokemon.name.toUpperCase(),
+              pokemon.name.toUpperCase(),
               maxLines: 2,
               style: TextStyle(fontWeight: FontWeight.w800),
               overflow: TextOverflow.ellipsis,

@@ -1,11 +1,11 @@
 import 'package:flutter_finals/models/types.dart';
 import 'package:http/http.dart' as http;
 
-class RemoteServices {
+class RemoteServicesType {
   final int id;
   static var client = http.Client();
 
-  RemoteServices(this.id);
+  RemoteServicesType(this.id);
 
   Future<Types?> fetchtypes() async {
     var typesResponse =

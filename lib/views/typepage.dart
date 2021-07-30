@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_finals/controllers/pokemon_controller.dart';
 import 'package:flutter_finals/models/types.dart';
 import 'package:flutter_finals/views/tiles/pokemon_tile.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:get/get.dart';
 
 class TypePage extends StatelessWidget {
   final Types chosen_type;
@@ -9,6 +11,8 @@ class TypePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final PokemonController typesController =
+        Get.put(PokemonController(chosen_type.name, chosen_type.pokemon));
     return Scaffold(
       appBar: AppBar(),
       body: Column(
@@ -27,18 +31,15 @@ class TypePage extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(
-            child: GestureDetector(
-                onTap: () {},
-                child: StaggeredGridView.countBuilder(
-                  crossAxisCount: 2,
-                  itemCount: chosen_type.pokemon.length,
-                  itemBuilder: (context, index) {
-                    return PokemonTile(chosen_type.pokemon[index]);
-                  },
-                  staggeredTileBuilder: (index) => StaggeredTile.fit(1),
-                )),
-          ),
+          Obx(() => Expanded(
+                  child: StaggeredGridView.countBuilder(
+                crossAxisCount: 2,
+                itemCount: typesController.pokelist.length,
+                itemBuilder: (context, index) {
+                  return PokemonTile(typesController.pokelist[index]);
+                },
+                staggeredTileBuilder: (index) => StaggeredTile.fit(1),
+              ))),
         ],
       ),
     );
