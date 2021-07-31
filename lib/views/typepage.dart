@@ -36,7 +36,8 @@ class TypePage extends StatelessWidget {
                 crossAxisCount: 2,
                 itemCount: typesController.pokelist.length,
                 itemBuilder: (context, index) {
-                  return PokemonTile(typesController.pokelist[index]);
+                  return PokemonTile(
+                      chosen_type, typesController.pokelist[index]);
                 },
                 staggeredTileBuilder: (index) => StaggeredTile.fit(1),
               ))),
