@@ -4,10 +4,9 @@ import 'package:flutter_finals/models/ability.dart';
 import 'package:flutter_finals/models/types.dart';
 
 class AbilityTile extends StatelessWidget {
-  final Ability ability;
-  final int index;
+  final String moves;
   final Types types_master;
-  AbilityTile(this.ability, this.index, this.types_master);
+  AbilityTile(this.moves, this.types_master);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class AbilityTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(10),
         child: Text(
-          ability.name,
+          moves,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 17,
