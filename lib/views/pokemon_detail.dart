@@ -5,40 +5,25 @@ import 'package:flutter_finals/models/pokemon.dart';
 import 'package:flutter_finals/models/types.dart';
 import 'package:flutter_finals/views/tiles/ability_tile.dart';
 import 'package:flutter_finals/views/tiles/description_tile.dart';
+import 'package:flutter_finals/views/tiles/effect_entries_tile.dart';
+import 'package:flutter_finals/views/tiles/others_tile.dart';
 import 'package:flutter_finals/views/tiles/stats_tile.dart';
+import 'package:flutter_finals/views/widgets/divider.dart';
 import 'package:flutter_finals/views/widgets/poke_id_type.dart';
 import 'package:flutter_finals/views/widgets/sprite_image.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 
-class PokemonDetail extends StatelessWidget {
+class PokemonDetail extends StatefulWidget {
   final PokemonMaster pokemon;
   final Types types_master;
   PokemonDetail(this.pokemon, this.types_master);
 
-  Widget divider(String str) {
-    return Column(
-      children: [
-        Container(
-          child: Text(
-            str,
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        Divider(
-          color: Colors.black45,
-          height: 12,
-          thickness: 2,
-          indent: 20,
-          endIndent: 20,
-        ),
-      ],
-    );
-  }
+  @override
+  _PokemonDetailState createState() => _PokemonDetailState();
+}
 
+class _PokemonDetailState extends State<PokemonDetail> {
   @override
   Widget build(BuildContext context) {
     final CharacteristicsController characteristicsController =
@@ -47,56 +32,55 @@ class PokemonDetail extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(pokemon.name.toUpperCase()),
+        title: Text(widget.pokemon.name.toUpperCase()),
         centerTitle: true,
       ),
       body: ListView(
         physics: ScrollPhysics(),
         children: [
-          SpriteImage(pokemon),
-          SizedBox(height: 10),
-          PokeIdType(pokemon, types_master),
-          SizedBox(height: 10),
-          divider('About'),
-          // Obx(
-          //   () => Container(
-          //     height: MediaQuery.of(context).size.height * 0.28,
-          //     child: Padding(
-          //       padding: const EdgeInsets.all(10.0),
-          //       child: ListView.builder(
-          //           itemCount:
-          //               characteristicsController.characteristicsList.length,
-          //           itemBuilder: (BuildContext context, index) {
-          //             return DescTile(
-          //               characteristicsController.characteristicsList[index],
-          //             );
-          //           }),
-          //     ),
-          //   ),
-          // ),
-          SizedBox(height: 10),
-          divider('Stats'),
+          SpriteImage(widget.pokemon),
+          SizedBox(height: 20),
+          PokeIdType(widget.pokemon, widget.types_master),
+          SizedBox(height: 30),
+          CatDivider('Stats'),
           Obx(
             () => Container(
               height: MediaQuery.of(context).size.height * 0.28,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: ListView.builder(
-                    itemCount:
-                        characteristicsController.characteristicsList.length,
+                    itemCount: characteristicsController.statList.length,
                     itemBuilder: (BuildContext context, index) {
                       return StatsTile(
-                        characteristicsController.characteristicsList[index],
+                        characteristicsController.statList[index],
+                        index,
+                      );
+                    }),
+              ),
+            ),
+          ),
+          CatDivider('Description'),
+          Obx(
+            () => Container(
+              height: MediaQuery.of(context).size.height * 0.2,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: ListView.builder(
+                    itemCount: characteristicsController.descList.length,
+                    itemBuilder: (BuildContext context, index) {
+                      return DescriptionTile(
+                        characteristicsController.descList[index],
+                        index,
                       );
                     }),
               ),
             ),
           ),
           SizedBox(height: 10),
-          divider('Ability'),
+          CatDivider('Abilities'),
           Obx(
             () => Container(
-              height: MediaQuery.of(context).size.height * 0.28,
+              height: MediaQuery.of(context).size.height * 0.2,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: StaggeredGridView.countBuilder(
@@ -104,15 +88,32 @@ class PokemonDetail extends StatelessWidget {
                   itemCount: abilityController.abilityList.length,
                   itemBuilder: (context, index) {
                     return AbilityTile(
-                      abilityController.abilityList[index],
-                    );
+                        abilityController.abilityList[index], index);
                   },
                   staggeredTileBuilder: (index) => StaggeredTile.fit(1),
                 ),
               ),
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
+          CatDivider('Others'),
+          Obx(
+            () => Container(
+              height: MediaQuery.of(context).size.height * 0.28,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: StaggeredGridView.countBuilder(
+                  crossAxisCount: 2,
+                  itemCount: abilityController.textEntryList.length,
+                  itemBuilder: (context, index) {
+                    return OthersTile(
+                        abilityController.textEntryList[index], index);
+                  },
+                  staggeredTileBuilder: (index) => StaggeredTile.fit(1),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
