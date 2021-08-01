@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_finals/controllers/pokemon_controller.dart';
+import 'package:flutter_finals/helper/map_card_color.dart';
 import 'package:flutter_finals/models/types.dart';
 import 'package:flutter_finals/views/tiles/pokemon_tile.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -14,7 +15,9 @@ class TypePage extends StatelessWidget {
     final PokemonController typesController =
         Get.put(PokemonController(chosen_type.name, chosen_type.pokemon));
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: setCardColor(chosen_type.name),
+      ),
       body: Column(
         children: [
           Padding(

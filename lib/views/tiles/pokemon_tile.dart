@@ -26,7 +26,7 @@ class PokemonTile extends StatelessWidget {
               Stack(
                 children: [
                   Container(
-                    height: 180,
+                    height: 100,
                     width: double.infinity,
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
@@ -34,14 +34,29 @@ class PokemonTile extends StatelessWidget {
                     ),
                     child: CachedNetworkImage(
                       imageUrl: pokemon.sprites.frontDefault.toString(),
-                      placeholder: (context, url) =>
-                          CircularProgressIndicator(),
+                      placeholder: (context, url) => SizedBox(
+                          height: 100,
+                          width: double.infinity,
+                          child: CircularProgressIndicator()),
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),
                 ],
               ),
               SizedBox(height: 8),
+              Text(
+                pokemon.name.toUpperCase(),
+                maxLines: 2,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+                overflow: TextOverflow.ellipsis,
+              ),
+              SizedBox(height: 8),
+              Text(
+                "#" + pokemon.id.toString(),
+                maxLines: 2,
+                style: TextStyle(fontWeight: FontWeight.w800),
+                overflow: TextOverflow.ellipsis,
+              ),
             ],
           ),
         ),

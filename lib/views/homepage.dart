@@ -11,7 +11,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TYPES'),
+        backgroundColor: Colors.red[400],
+        title: Text('Types'),
       ),
       body: Column(
         children: [
