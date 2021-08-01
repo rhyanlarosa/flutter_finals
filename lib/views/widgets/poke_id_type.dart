@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_finals/helper/map_card_color.dart';
 import 'package:flutter_finals/models/pokemon.dart';
 import 'package:flutter_finals/models/types.dart';
 
@@ -24,7 +25,7 @@ class PokeIdType extends StatelessWidget {
         SizedBox(width: 10),
         Container(
           decoration: BoxDecoration(
-            color: Colors.blueGrey,
+            color: setCardColor(types_master.name),
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
           child: Padding(
@@ -33,7 +34,6 @@ class PokeIdType extends StatelessWidget {
               types_master.name.toUpperCase(),
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.white,
               ),
             ),
           ),

@@ -4,7 +4,7 @@ import 'package:get/state_manager.dart';
 
 class AbilityController extends GetxController {
   var abilityList = <Ability>[].obs;
-  var textEntryList = <Ability>[].obs;
+  var generationList = <Ability>[].obs;
 
   @override
   void onInit() {
@@ -13,7 +13,7 @@ class AbilityController extends GetxController {
   }
 
   void fetchAbility() async {
-    for (int i = 2; i < 4; i++) {
+    for (int i = 9; i <= 20; i++) {
       var ability = await RemoteServicesAbility(i).fetchAbility();
       if (ability != null) {
         abilityList.add(ability);
@@ -21,11 +21,11 @@ class AbilityController extends GetxController {
     }
   }
 
-  void fetchFlavorTextEntry() async {
-    for (int i = 1; i < 4; i++) {
-      var textEntry = await RemoteServicesAbility(i).fetchAbility();
-      if (textEntry != null) {
-        textEntryList.add(textEntry);
+  void fetchGeneration() async {
+    for (int i = 8; i < 20; i++) {
+      var generation = await RemoteServicesAbility(i).fetchAbility();
+      if (generation != null) {
+        generationList.add(generation);
       }
     }
   }
