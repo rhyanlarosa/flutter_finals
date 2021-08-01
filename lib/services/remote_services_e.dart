@@ -1,10 +1,10 @@
 import 'package:flutter_finals/models/evolution.dart';
 import 'package:http/http.dart' as http;
 
-class RemoteServicesAbility {
+class RemoteServicesEvolution {
   static var client = http.Client();
   final int id;
-  RemoteServicesAbility(this.id);
+  RemoteServicesEvolution(this.id);
 
   Future<Evolution?> fetchEvolution() async {
     var response =
