@@ -3,8 +3,8 @@ import 'package:flutter_finals/services/remote_services_a.dart';
 import 'package:get/state_manager.dart';
 
 class AbilityController extends GetxController {
-  var isLoading = true.obs;
   var abilityList = <Ability>[].obs;
+  var textEntryList = <Ability>[].obs;
 
   @override
   void onInit() {
@@ -13,10 +13,19 @@ class AbilityController extends GetxController {
   }
 
   void fetchAbility() async {
-    for (int id = 1; id < 50; id++) {
-      var ability = await RemoteServicesAbility(id).fetchAbility();
+    for (int i = 2; i < 4; i++) {
+      var ability = await RemoteServicesAbility(i).fetchAbility();
       if (ability != null) {
         abilityList.add(ability);
+      }
+    }
+  }
+
+  void fetchFlavorTextEntry() async {
+    for (int i = 1; i < 4; i++) {
+      var textEntry = await RemoteServicesAbility(i).fetchAbility();
+      if (textEntry != null) {
+        textEntryList.add(textEntry);
       }
     }
   }

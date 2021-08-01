@@ -1,32 +1,34 @@
+import 'package:flutter_finals/models/characteristics.dart';
 import 'package:flutter_finals/services/remote_services.c.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 class CharacteristicsController extends GetxController {
-  RxList<dynamic> characteristicsList = [].obs;
-  // var characteristicsList = <Characteristics>[].obs;
+  RxList<dynamic> statList = [].obs;
+  var descList = <Characteristics>[].obs;
 
   @override
   void onInit() {
-    fetchCharacteristics();
+    fetchStats();
+    fetchDescription();
     super.onInit();
   }
 
-  void fetchCharacteristics() async {
+  void fetchStats() async {
     for (int id = 1; id < 7; id++) {
-      var characteristics =
-          await RemoteServicesCharacteristics(id).fetchCharacteristic();
-      if (characteristics != null) {
-        characteristicsList.add(characteristics);
+      var stats = await RemoteServicesCharacteristics(id).fetchCharacteristic();
+      if (stats != null) {
+        statList.add(stats);
       }
     }
-    // var characteristics =
-    //     await RemoteServicesCharacteristics.fetchCharacteristic();
-    // if (characteristics != null) {
-    //   characteristicsList.add(characteristics);
-    //   print('Added successfully!');
-    // } else {
-    //   print('fetchCharacteristics failed!');
-    // }
+  }
+
+  void fetchDescription() async {
+    for (int id = 1; id < 3; id++) {
+      var desc = await RemoteServicesCharacteristics(id).fetchCharacteristic();
+      if (desc != null) {
+        descList.add(desc);
+      }
+    }
   }
 }

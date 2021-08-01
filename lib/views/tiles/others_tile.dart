@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_finals/models/ability.dart';
 
-class AbilityTile extends StatelessWidget {
+class OthersTile extends StatelessWidget {
   final Ability ability;
   final int index;
-  AbilityTile(this.ability, this.index);
+  OthersTile(this.ability, this.index);
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +17,10 @@ class AbilityTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(10),
         child: Text(
-          ability.name,
+          ability.flavorTextEntries[index].flavorText,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 17,
-            color: Colors.white,
           ),
         ),
       ),
