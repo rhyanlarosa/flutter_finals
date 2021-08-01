@@ -8,7 +8,7 @@ class RemoteServicesEvolutionTrigger {
 
   Future<Evolutiontrigger?> fetchTrigger() async {
     var response = await client
-        .get(Uri.parse('https://pokeapi.co/api/v2/evolution-chain/${id}/'));
+        .get(Uri.parse('https://pokeapi.co/api/v2/evolution-trigger/${id}/'));
     if (response.statusCode == 200) {
       var jsonString = response.body;
       return evolutiontriggerFromJson(jsonString);
