@@ -67,8 +67,8 @@ class _PokemonDetailState extends State<PokemonDetail> {
                   crossAxisCount: 2,
                   itemCount: abilityController.abilityList.length,
                   itemBuilder: (context, index) {
-                    return AbilityTile(abilityController.abilityList[index],
-                        index, widget.types_master);
+                    return AbilityTile(widget.pokemon.moves[index].move.name,
+                        widget.types_master);
                   },
                   staggeredTileBuilder: (index) => StaggeredTile.fit(1),
                 ),

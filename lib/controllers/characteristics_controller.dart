@@ -1,7 +1,7 @@
 import 'package:flutter_finals/models/characteristics.dart';
-import 'package:flutter_finals/services/remote_services.c.dart';
-import 'package:get/get.dart';
+import 'package:flutter_finals/services/remote_services_c.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 
 class CharacteristicsController extends GetxController {
   RxList<dynamic> statList = [].obs;
