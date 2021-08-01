@@ -52,6 +52,8 @@ class Chain {
         evolvesTo: List<Chain>.from(json["evolves_to"].map((x) => Chain.fromJson(x))),
     );
 
+  get evolution => null;
+
     Map<String, dynamic> toJson() => {
         "is_baby": isBaby,
         "species": species.toJson(),
