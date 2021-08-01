@@ -21,8 +21,8 @@ class CatDivider extends StatelessWidget {
           color: Colors.black45,
           height: 12,
           thickness: 2,
-          indent: 20,
-          endIndent: 20,
+          indent: 30,
+          endIndent: 30,
         ),
       ],
     );

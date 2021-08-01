@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_finals/helper/map_card_color.dart';
 import 'package:flutter_finals/models/pokemon.dart';
+import 'package:flutter_finals/models/types.dart';
 
 class SpriteImage extends StatelessWidget {
   final PokemonMaster pokemon;
-  SpriteImage(this.pokemon);
+  final Types types_master;
+  SpriteImage(this.pokemon, this.types_master);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class SpriteImage extends StatelessWidget {
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(1),
-            color: Theme.of(context).accentColor.withOpacity(0.5),
+            color: setCardColor(types_master.name).withOpacity(0.5),
           ),
           child: CachedNetworkImage(
             imageUrl: pokemon.sprites.frontDefault.toString(),
