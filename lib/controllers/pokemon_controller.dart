@@ -23,6 +23,5 @@ class PokemonController extends GetxController {
         pokelist.add(pokemon);
       }
     }
-    pokelist.length;
   }
 }
