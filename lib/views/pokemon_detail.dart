@@ -7,8 +7,6 @@ import 'package:flutter_finals/helper/map_card_color.dart';
 import 'package:flutter_finals/models/pokemon.dart';
 import 'package:flutter_finals/models/types.dart';
 import 'package:flutter_finals/views/tiles/ability_tile.dart';
-import 'package:flutter_finals/views/tiles/evolution_tile.dart';
-import 'package:flutter_finals/views/tiles/others_tile.dart';
 import 'package:flutter_finals/views/tiles/stats_tile.dart';
 import 'package:flutter_finals/views/widgets/divider.dart';
 import 'package:flutter_finals/views/widgets/poke_id_type.dart';
@@ -72,35 +70,36 @@ class _PokemonDetailState extends State<PokemonDetail> {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: StaggeredGridView.countBuilder(
                   crossAxisCount: 2,
-                  itemCount: abilityController.abilityList.length,
+                  itemCount: widget.pokemon.moves.length,
                   itemBuilder: (context, index) {
-                    return AbilityTile(abilityController.abilityList[index],
-                        index, widget.types_master);
+                    return AbilityTile(widget.pokemon.moves[index].move.name,
+                        widget.types_master);
                   },
                   staggeredTileBuilder: (index) => StaggeredTile.fit(1),
                 ),
               ),
             ),
           ),
-          SizedBox(height: 50),
-          CatDivider('Evolution'),
-          Obx(
-            () => Container(
-              height: MediaQuery.of(context).size.height * 0.2,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: StaggeredGridView.countBuilder(
-                  crossAxisCount: 2,
-                  itemCount: chain.evo_chain.value.chain.evolvesTo.length,
-                  itemBuilder: (context, index) {
-                    return chainTile(chain.evo_chain.value.chain.evolvesTo[index],
-                        );
-                  },
-                  staggeredTileBuilder: (index) => StaggeredTile.fit(1),
-                ),
-              ),
-            ),
-          ),
+          // SizedBox(height: 50),
+          // CatDivider('Evolution'),
+          // Obx(
+          //   () => Container(
+          //     height: MediaQuery.of(context).size.height * 0.2,
+          //     child: Padding(
+          //       padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          //       child: StaggeredGridView.countBuilder(
+          //         crossAxisCount: 2,
+          //         itemCount: chain.evo_chain.value.chain.evolvesTo.length,
+          //         itemBuilder: (context, index) {
+          //           return chainTile(
+          //             chain.evo_chain.value.chain.evolvesTo[index],
+          //           );
+          //         },
+          //         staggeredTileBuilder: (index) => StaggeredTile.fit(1),
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
