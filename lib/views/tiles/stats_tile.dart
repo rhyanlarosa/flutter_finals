@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_finals/models/pokemon.dart';
 
 class StatsTile extends StatelessWidget {
-  final PokemonMaster character;
-  final int attackType;
-  StatsTile(this.character, this.attackType);
+  final Stat stats;
+  StatsTile(this.stats);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +14,7 @@ class StatsTile extends StatelessWidget {
         children: [
           Container(
             child: Text(
-              '${character.stats[attackType].stat.name.toUpperCase()}',
+              stats.stat.name.toUpperCase(),
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
@@ -25,7 +24,7 @@ class StatsTile extends StatelessWidget {
           SizedBox(width: 20),
           Container(
             child: Text(
-              '${character.stats[attackType].baseStat}',
+              stats.baseStat.toString(),
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
