@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_finals/controllers/ability_controller.dart';
 import 'package:flutter_finals/controllers/characteristics_controller.dart';
-<<<<<<< Updated upstream
-import 'package:flutter_finals/models/pokemon.dart';
-import 'package:flutter_finals/models/types.dart';
-import 'package:flutter_finals/views/tiles/ability_tile.dart';
-import 'package:flutter_finals/views/tiles/description_tile.dart';
-import 'package:flutter_finals/views/tiles/effect_entries_tile.dart';
-=======
 import 'package:flutter_finals/controllers/chain_controller.dart';
 import 'package:flutter_finals/controllers/trigger_controller.dart';
 import 'package:flutter_finals/helper/map_card_color.dart';
 import 'package:flutter_finals/models/pokemon.dart';
 import 'package:flutter_finals/models/types.dart';
 import 'package:flutter_finals/views/tiles/ability_tile.dart';
+import 'package:flutter_finals/views/tiles/description_tile.dart';
 import 'package:flutter_finals/views/tiles/evolution_tile.dart';
->>>>>>> Stashed changes
 import 'package:flutter_finals/views/tiles/others_tile.dart';
 import 'package:flutter_finals/views/tiles/stats_tile.dart';
 import 'package:flutter_finals/views/widgets/divider.dart';
@@ -125,8 +118,6 @@ class _PokemonDetailState extends State<PokemonDetail> {
               ),
             ),
           ),
-<<<<<<< Updated upstream
-=======
           SizedBox(height: 50),
           CatDivider('Evolution'),
           Obx(
@@ -146,7 +137,6 @@ class _PokemonDetailState extends State<PokemonDetail> {
               ),
             ),
           ),
->>>>>>> Stashed changes
         ],
       ),
     );

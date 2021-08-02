@@ -6,6 +6,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 class PokemonChain extends GetxController {
   final int id;
   var evo_chain = Evolutionchain(id: 0, chain: Chain(evolvesTo: [])).obs;
+  RxList<dynamic> chainList = [].obs;
 
   PokemonChain(this.id);
 
@@ -15,10 +16,20 @@ class PokemonChain extends GetxController {
     super.onInit();
   }
 
+  // void fetchchain() async {
+  //   var chain = await RemoteServicesEvolutionChain(id).fetchChain();
+  //   if (chain != null) {
+  //     evo_chain.value = chain;
+  //   }
+  // }
   void fetchchain() async {
-    var chain = await RemoteServicesEvolutionChain(id).fetchChain();
-    if (chain != null) {
-      evo_chain.value = chain;
+    for (int i = 1; i < 251; i++) {
+      var chain = await RemoteServicesEvolutionChain(i).fetchChain();
+      if (chain != null) {
+        chainList.add(chain);
+      }
     }
+
   }
+
 }
